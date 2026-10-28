@@ -1,0 +1,231 @@
+{
+  "generated": "2026-10-28T20:10:45.418Z",
+  "machine": {
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cores": 2,
+    "os": "Linux 6.18.44-fc-v180"
+  },
+  "config": {
+    "requests": 60000,
+    "connections": 64,
+    "rounds": 3,
+    "pinned": true
+  },
+  "scenarios": [
+    {
+      "id": "hello",
+      "label": "GET /hello (text)",
+      "path": "/hello"
+    },
+    {
+      "id": "json",
+      "label": "GET /json (JSON response)",
+      "path": "/json"
+    },
+    {
+      "id": "param",
+      "label": "GET /users/:id (param + JSON)",
+      "path": "/users/12345"
+    },
+    {
+      "id": "deep",
+      "label": "GET /r39x/:a/items/:b (route #41 of 44)",
+      "path": "/r39x/alpha/items/beta"
+    },
+    {
+      "id": "post",
+      "label": "POST /echo (parse JSON body + JSON response)",
+      "path": "/echo",
+      "method": "POST",
+      "body": "{\"name\":\"Ada\",\"langs\":[\"ts\",\"c\"],\"n\":1,\"nested\":{\"ok\":true,\"list\":[1,2,3,4,5]}}"
+    }
+  ],
+  "results": {
+    "huskar-native": {
+      "label": "huskar (scriptc native)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 18.833333333333332,
+          "rps": 19801.980198019803,
+          "p99": 11,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 19.666666666666668,
+          "rps": 19801.980198019803,
+          "p99": 11,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 20,
+          "rps": 19801.980198019803,
+          "p99": 12,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 19.666666666666668,
+          "rps": 19801.980198019803,
+          "p99": 10,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 23.5,
+          "rps": 19801.980198019803,
+          "p99": 11,
+          "invalid": null
+        }
+      },
+      "startupMs": 7.2,
+      "rssMB": 4.859375
+    },
+    "huskar-bun": {
+      "label": "huskar (Bun)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 25.666666666666668,
+          "rps": 19736.842105263157,
+          "p99": 13,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 27.5,
+          "rps": 19736.842105263157,
+          "p99": 11,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 24,
+          "rps": 29411.764705882353,
+          "p99": 9,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 25,
+          "rps": 29556.65024630542,
+          "p99": 10,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 31,
+          "rps": 19736.842105263157,
+          "p99": 10,
+          "invalid": null
+        }
+      },
+      "startupMs": 50.6,
+      "rssMB": 54.50390625
+    },
+    "huskar-node": {
+      "label": "huskar (Node)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 32,
+          "rps": 19801.980198019803,
+          "p99": 12,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 35.333333333333336,
+          "rps": 19801.980198019803,
+          "p99": 11,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 36.5,
+          "rps": 19736.842105263157,
+          "p99": 12,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 36.333333333333336,
+          "rps": 19672.131147540986,
+          "p99": 11,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 73.33333333333333,
+          "rps": 11904.761904761905,
+          "p99": 23,
+          "invalid": null
+        }
+      },
+      "startupMs": 74.9,
+      "rssMB": 126.50390625
+    },
+    "express": {
+      "label": "Express (Node)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 164.33333333333334,
+          "rps": 5439.709882139619,
+          "p99": 23,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 163.83333333333334,
+          "rps": 5982.053838484547,
+          "p99": 24,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 186.5,
+          "rps": 4987.5311720698255,
+          "p99": 29,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 172.33333333333334,
+          "rps": 5439.709882139619,
+          "p99": 24,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 210.5,
+          "rps": 4604.758250191865,
+          "p99": 30,
+          "invalid": null
+        }
+      },
+      "startupMs": 136.6,
+      "rssMB": 136.12890625
+    },
+    "ultimate": {
+      "label": "ultimate-express (Node)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 44,
+          "rps": 14888.337468982629,
+          "p99": 20,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 50,
+          "rps": 14851.485148514852,
+          "p99": 21,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 55.5,
+          "rps": 14888.337468982629,
+          "p99": 25,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 59,
+          "rps": 14888.337468982629,
+          "p99": 21,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 66.5,
+          "rps": 11928.429423459243,
+          "p99": 24,
+          "invalid": null
+        }
+      },
+      "startupMs": 150.8,
+      "rssMB": 144.86328125
+    }
+  },
+  "startupNote": "startupMs re-measured with bench/run.mjs --startup-only (1 ms TCP polling, median of 7 launches)"
+}

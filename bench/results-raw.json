@@ -1,0 +1,120 @@
+{
+  "generated": "2026-10-28T20:13:08.248Z",
+  "machine": {
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cores": 2,
+    "os": "Linux 6.18.44-fc-v180"
+  },
+  "config": {
+    "requests": 60000,
+    "connections": 64,
+    "rounds": 3,
+    "pinned": true
+  },
+  "scenarios": [
+    {
+      "id": "hello",
+      "label": "GET /hello (text)",
+      "path": "/hello"
+    },
+    {
+      "id": "json",
+      "label": "GET /json (JSON response)",
+      "path": "/json"
+    },
+    {
+      "id": "param",
+      "label": "GET /users/:id (param + JSON)",
+      "path": "/users/12345"
+    },
+    {
+      "id": "deep",
+      "label": "GET /r39x/:a/items/:b (route #41 of 44)",
+      "path": "/r39x/alpha/items/beta"
+    },
+    {
+      "id": "post",
+      "label": "POST /echo (parse JSON body + JSON response)",
+      "path": "/echo",
+      "method": "POST",
+      "body": "{\"name\":\"Ada\",\"langs\":[\"ts\",\"c\"],\"n\":1,\"nested\":{\"ok\":true,\"list\":[1,2,3,4,5]}}"
+    }
+  ],
+  "results": {
+    "huskar-native": {
+      "label": "huskar (scriptc native)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 19.333333333333332,
+          "rps": 19801.980198019803,
+          "p99": 12,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 19.666666666666668,
+          "rps": 19801.980198019803,
+          "p99": 10,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 23,
+          "rps": 14851.485148514852,
+          "p99": 17,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 20.333333333333332,
+          "rps": 19736.842105263157,
+          "p99": 10,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 25.333333333333332,
+          "rps": 19736.842105263157,
+          "p99": 12,
+          "invalid": null
+        }
+      },
+      "startupMs": 7.2,
+      "rssMB": 4.91796875
+    },
+    "raw-native": {
+      "label": "hand-written node:http (scriptc native)",
+      "scenarios": {
+        "hello": {
+          "cpuUsPerReq": 19.833333333333332,
+          "rps": 19672.131147540986,
+          "p99": 12,
+          "invalid": null
+        },
+        "json": {
+          "cpuUsPerReq": 20.5,
+          "rps": 19736.842105263157,
+          "p99": 10,
+          "invalid": null
+        },
+        "param": {
+          "cpuUsPerReq": 20.333333333333332,
+          "rps": 19672.131147540986,
+          "p99": 11,
+          "invalid": null
+        },
+        "deep": {
+          "cpuUsPerReq": 20.166666666666668,
+          "rps": 19736.842105263157,
+          "p99": 11,
+          "invalid": null
+        },
+        "post": {
+          "cpuUsPerReq": 21.333333333333332,
+          "rps": 19801.980198019803,
+          "p99": 10,
+          "invalid": null
+        }
+      },
+      "startupMs": 5.9,
+      "rssMB": 3.21484375
+    }
+  },
+  "startupNote": "startupMs re-measured with bench/run.mjs --startup-only (1 ms TCP polling, median of 7 launches)"
+}

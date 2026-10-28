@@ -1,0 +1,21 @@
+{
+  "name": "huskar",
+  "version": "0.1.0",
+  "description": "Express-style web microframework designed to compile to a native binary with scriptc",
+  "type": "module",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "scripts": {
+    "test": "bun test",
+    "test:bun": "HUSKAR_TARGETS=bun bun test",
+    "test:native": "HUSKAR_TARGETS=native bun test",
+    "build": "scriptc build examples/app.ts -o build/app",
+    "coverage": "scriptc coverage examples/app.ts",
+    "bench": "node bench/run.mjs"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}
